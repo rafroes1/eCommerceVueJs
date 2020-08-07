@@ -7,7 +7,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
+          <b-nav-item to="/">Home</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -27,11 +27,11 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template v-slot:button-content>
-              <em>User</em>
+              <em>{{ $store.state.fullname }}</em>
             </template>
             <b-dropdown-item v-if="!$store.state.isLoggedIn" v-b-modal.modal-login href="#">Login</b-dropdown-item>
             <b-dropdown-item v-if="!$store.state.isLoggedIn" v-b-modal.modal-register href="#">Register</b-dropdown-item>
-            <b-dropdown-item v-if="$store.state.isLoggedIn" href="#">Profile</b-dropdown-item>
+            <b-dropdown-item v-if="$store.state.isLoggedIn" to="/account">My Account</b-dropdown-item>
             <b-dropdown-item v-if="$store.state.isLoggedIn" href="#">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

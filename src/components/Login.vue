@@ -2,6 +2,7 @@
   <div>
     <b-modal id="modal-login" title="Login">
       <template v-slot:default>
+        <Alert :alert="alert" />
         <b-form-group
           label="Email"
           label-for="email-input"
@@ -41,6 +42,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Alert from '@/components/Alert'
 
 export default {
   data () {
@@ -48,16 +50,33 @@ export default {
       form: {
         email: undefined,
         password: undefined
+      },
+      alert: {
+        show: false,
+        variant: '',
+        message: ''
       }
     }
   },
+  components: {
+    Alert
+  },
   methods: {
     ...mapActions([
-      'login'
+      'login',
+      'profile'
     ]),
     async handleLogin () {
-      await this.login(this.form)
-      this.$bvModal.hide('modal-login')
+      const result = await this.login(this.form)
+      if (result.isLoggedIn) {
+        this.profile()
+        this.alert.show = false
+        this.$bvModal.hide('modal-login')
+      } else {
+        this.alert.show = true
+        this.alert.variant = 'danger'
+        this.alert.message = result.message
+      }
     }
   }
 }
