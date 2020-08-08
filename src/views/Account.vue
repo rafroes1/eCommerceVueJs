@@ -28,6 +28,7 @@ import ChangePassword from '@/components/ChangePassword'
 import History from '@/components/History'
 
 export default {
+  name: 'Account',
   components: {
     Profile,
     ChangePassword,
