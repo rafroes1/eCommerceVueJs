@@ -1,5 +1,5 @@
 export default {
-  cart: async ({ commit }) => {
+  getCart: async ({ commit }) => {
     const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/cart`, {
       method: 'GET',
       credentials: 'include'
