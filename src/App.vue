@@ -5,17 +5,20 @@
       <router-view/>
     </b-container>
     <Login/>
+    <Register/>
   </div>
 </template>
 
 <script>
 import Nav from '@/components/Nav'
 import Login from '@/components/Login'
+import Register from '@/components/Register'
 
 export default {
   components: {
     Nav,
-    Login
+    Login,
+    Register
   }
 }
 </script>

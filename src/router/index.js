@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Account from '../views/Account.vue'
 import Cart from '../views/Cart.vue'
+import Checkout from '../views/Checkout.vue'
+import Success from '../views/Success.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +12,11 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    component: Home
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
     component: Home
   },
   {
@@ -21,6 +28,16 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: Cart
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
+  },
+  {
+    path: '/success',
+    name: 'Success',
+    component: Success
   }
   // {
   //   path: '/about',

@@ -71,6 +71,8 @@ export default {
       if (result.isLoggedIn) {
         this.profile()
         this.alert.show = false
+        this.form.email = ''
+        this.form.password = ''
         this.$bvModal.hide('modal-login')
       } else {
         this.alert.show = true

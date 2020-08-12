@@ -20,6 +20,18 @@ export default {
 
     return response
   },
+  checkout: async ({ commit }, payload) => {
+    const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/cart/checkout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+
+    return response
+  },
   update: async ({ commit }, payload) => {
     const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/cart/update`, {
       method: 'PUT',

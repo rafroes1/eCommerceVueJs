@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getCart',
       'add'
     ]),
     async addToCart (id) {
@@ -119,7 +118,6 @@ export default {
       this.alert.show = true
       this.alert.message = result.message
       if (response.status === 200) {
-        this.getCart()
         this.alert.variant = 'success'
       } else {
         this.alert.variant = 'danger'

@@ -21,13 +21,37 @@
             <template v-slot:button-content>
               <em>{{ $store.state.fullname }}</em>
             </template>
-            <b-dropdown-item v-if="!$store.state.isLoggedIn" v-b-modal.modal-login href="#">Login</b-dropdown-item>
-            <b-dropdown-item v-if="!$store.state.isLoggedIn" v-b-modal.modal-register href="#">Register</b-dropdown-item>
+            <b-dropdown-item v-if="!$store.state.isLoggedIn" @click="showLogin">Login</b-dropdown-item>
+            <b-dropdown-item v-if="!$store.state.isLoggedIn" @click="showRegister">Register</b-dropdown-item>
             <b-dropdown-item v-if="$store.state.isLoggedIn" to="/account">My Account</b-dropdown-item>
-            <b-dropdown-item v-if="$store.state.isLoggedIn" href="#">Sign Out</b-dropdown-item>
+            <b-dropdown-item v-if="$store.state.isLoggedIn" @click="handleLogout">Log Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions([
+      'logout'
+    ]),
+    showLogin () {
+      this.$bvModal.show('modal-login')
+    },
+    showRegister () {
+      this.$bvModal.show('modal-register')
+    },
+    async handleLogout () {
+      await this.logout()
+      if (this.$route.path !== '/') {
+        this.$router.push('/')
+      }
+    }
+  }
+}
+</script>
