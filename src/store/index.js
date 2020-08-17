@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import Authentication from './actions/authentication'
 import User from './actions/user'
 import Cart from './actions/cart'
+import History from './actions/history'
 
 Vue.use(Vuex)
 
@@ -31,7 +32,8 @@ export default new Vuex.Store({
   actions: {
     ...Authentication,
     ...User,
-    ...Cart
+    ...Cart,
+    ...History
   },
   modules: {
   }
