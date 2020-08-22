@@ -5,6 +5,7 @@ import Account from '../views/Account.vue'
 import Cart from '../views/Cart.vue'
 import Checkout from '../views/Checkout.vue'
 import Success from '../views/Success.vue'
+import ProductDetails from '../views/ProductDetails.vue'
 
 Vue.use(VueRouter)
 
@@ -38,7 +39,13 @@ const routes = [
     path: '/success',
     name: 'Success',
     component: Success
+  },
+  {
+    path: '/ProductDetails/:id',
+    name: 'ProductDetails',
+    component: ProductDetails
   }
+
   // {
   //   path: '/about',
   //   name: 'About',
