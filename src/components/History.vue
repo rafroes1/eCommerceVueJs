@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <b-table striped hover :items="items"></b-table> -->
     <b-list-group v-for="item in items" v-bind:key="item" class="m-2">
       <b-list-group-item variant="secondary">
         <b-container>
@@ -20,7 +19,7 @@
                   <b-col><h6>Product Name: </h6> <p><small>{{ product.name }}</small></p></b-col>
                   <b-col><h6>Shipping Cost: </h6> <p><small>{{ product.shippingCost | formatMoney() }}</small></p></b-col>
                   <b-col><h6>Unit Price: </h6> <p><small>{{ product.price | formatMoney() }}</small></p></b-col>
-                  <b-col><h6>Quantity purchased: </h6> <p><small>{{ product.quantities }}</small></p></b-col>
+                  <b-col><h6>Quantity Purchased: </h6> <p><small>{{ product.quantities }}</small></p></b-col>
                 </b-row>
               </b-container>
             </b-list-group-item>
@@ -58,9 +57,6 @@ export default {
       const response = await this.history()
       const result = await response.json()
       this.items = result
-      console.log(result)
-
-      // got the data correctly, need to find a way to display it nicely in the ui
     }
   },
   created: function () {

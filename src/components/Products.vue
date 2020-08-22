@@ -1,83 +1,26 @@
 <template>
   <div class="mt-3">
     <Alert :alert="alert" />
-    <b-row>
+     <b-row v-for="value in items" :key="value._id">
       <b-col>
         <b-card-group deck>
           <b-card
-            title="Product 1"
-            img-src="https://picsum.photos/600/300/?image=25"
+            :title="value.name"
+            :img-src="value.image"
             img-alt="Image"
             img-top
             tag="article"
             style="max-width: 20rem;"
             class="mb-2"
           >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+            <b-card-text
+            >
+            ${{value.price}}
             </b-card-text>
 
-            <b-button href="#" variant="primary" @click="addToCart('5f261fb516dd9c4a2d2af376')">Buy</b-button>
-          </b-card>
-        </b-card-group>
-      </b-col>
-      <b-col>
-        <b-card-group deck>
-          <b-card
-            title="Product 2"
-            img-src="https://picsum.photos/600/300/?image=26"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary" @click="addToCart('5f261fcb16dd9c4a2d2af377')">Buy</b-button>
-          </b-card>
-        </b-card-group>
-      </b-col>
-      <b-col>
-        <b-card-group deck>
-          <b-card
-            title="Product 1"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary">Buy</b-button>
-          </b-card>
-        </b-card-group>
-      </b-col>
-
-      <div class="w-100"></div>
-
-      <b-col>
-        <b-card-group deck>
-          <b-card
-            title="Product 1"
-            img-src="https://picsum.photos/600/300/?image=25"
-            img-alt="Image"
-            img-top
-            tag="article"
-            style="max-width: 20rem;"
-            class="mb-2"
-          >
-            <b-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </b-card-text>
-
-            <b-button href="#" variant="primary">Buy</b-button>
+            <b-button size="sm" class="mb-2" href="#" variant="primary" @click="addToCart(value._id)">Buy</b-button>
+            &nbsp;
+            <b-button size="sm" class="mb-2" variant="outline-primary" :to="'/ProductDetails/' + value._id ">Details</b-button>
           </b-card>
         </b-card-group>
       </b-col>
@@ -96,6 +39,7 @@ export default {
         productId: '',
         quantities: 1
       },
+      items: this.$store.state.products,
       alert: {
         show: false,
         variant: '',
@@ -103,13 +47,21 @@ export default {
       }
     }
   },
+  created () {
+    this.loadProducts()
+  },
   components: {
     Alert
   },
   methods: {
     ...mapActions([
+      'getProducts',
       'add'
     ]),
+    async loadProducts () {
+      await this.getProducts()
+      this.items = this.$store.state.products
+    },
     async addToCart (id) {
       this.form.productId = id
       const response = await this.add(this.form)
@@ -123,6 +75,7 @@ export default {
         this.alert.variant = 'danger'
       }
     }
+
   }
 }
 </script>
