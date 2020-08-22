@@ -20,5 +20,27 @@ export default {
     })
 
     return response
+  },
+  register: async ({ comit }, payload) => {
+    const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/user/create-account`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    return response
+  },
+  updateAccount: async ({ comit }, payload) => {
+    const response = await fetch(`${process.env.VUE_APP_BASE_URL}/api/user/update-account`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    return response
   }
 }

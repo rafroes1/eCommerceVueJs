@@ -50,16 +50,45 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary">Update</b-button>
+      <b-button type="submit" variant="primary" @click="handleUpdateAccount">Update</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      form: this.$store.state.user
+      form: {
+        email: '',
+        password: '',
+        fullname: '',
+        phone: '',
+        address: ''
+      },
+      alert: {
+        show: false,
+        variant: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions([
+      'updateAccount'
+    ]),
+    async handleUpdateAccount () {
+      const response = await this.updateAccount(this.form)
+      const result = await response.json()
+      this.alert.show = true
+      this.alert.message = result.message
+      if (response.status === 200) {
+        this.alert.variant = 'success'
+      } else {
+        this.alert.variant = 'danger'
+      }
     }
   }
 }
