@@ -46,7 +46,6 @@
           <b-form-input
             id="phone-input"
             v-model="form.phone"
-            type="number"
             required
           ></b-form-input>
         </b-form-group>
@@ -109,6 +108,11 @@ export default {
       this.alert.show = true
       this.alert.message = result.message
       if (response.status === 200) {
+        this.form.email = ''
+        this.form.password = ''
+        this.form.fullname = ''
+        this.form.phone = ''
+        this.form.address = ''
         this.alert.variant = 'success'
       } else {
         this.alert.variant = 'danger'

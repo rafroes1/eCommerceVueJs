@@ -72,9 +72,9 @@ export default {
   data () {
     return {
       form: {
-        fullname: '',
-        phone: '',
-        address: '',
+        fullname: this.$store.state.user.fullname || '',
+        phone: this.$store.state.user.phone || '',
+        address: this.$store.state.user.address || '',
         couponCode: ''
       },
       alert: {

@@ -16,8 +16,7 @@ export default new Vuex.Store({
     fullname: 'User',
     user: {},
     cart: [],
-    products: [],
-    productById: {}
+    products: []
   },
   mutations: {
     isLoggedIn: (state, isLoggedIn) => {
@@ -34,9 +33,6 @@ export default new Vuex.Store({
     },
     setProducts: (state, products) => {
       state.products = products
-    },
-    setProductById: (state, productById) => {
-      state.productById = productById
     }
   },
   actions: {

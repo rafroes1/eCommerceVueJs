@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-list-group v-for="item in items" v-bind:key="item" class="m-2">
+    <b-list-group v-for="item in items" v-bind:key="item._id" class="m-2">
       <b-list-group-item variant="secondary">
         <b-container>
           <b-row align-v="center">
@@ -10,21 +10,19 @@
           </b-row>
         </b-container>
       </b-list-group-item>
-      <v-list-group-item>
-        <b-list-group>
-            <b-list-group-item v-for="product in item.products" v-bind:key="product">
-              <b-container class="m-2">
-                <b-row align-v="center">
-                  <b-col><b-img thumbnail fluid src="https://picsum.photos/250/250/?image=54" alt="Image 1"></b-img></b-col>
-                  <b-col><h6>Product Name: </h6> <p><small>{{ product.name }}</small></p></b-col>
-                  <b-col><h6>Shipping Cost: </h6> <p><small>{{ product.shippingCost | formatMoney() }}</small></p></b-col>
-                  <b-col><h6>Unit Price: </h6> <p><small>{{ product.price | formatMoney() }}</small></p></b-col>
-                  <b-col><h6>Quantity Purchased: </h6> <p><small>{{ product.quantities }}</small></p></b-col>
-                </b-row>
-              </b-container>
-            </b-list-group-item>
-          </b-list-group>
-      </v-list-group-item>
+      <b-list-group>
+        <b-list-group-item v-for="product in item.products" v-bind:key="product._id">
+          <b-container class="m-2">
+            <b-row align-v="center">
+              <b-col><b-img thumbnail fluid :src="product.image" alt="Image 1"></b-img></b-col>
+              <b-col><h6>Product Name: </h6> <p><small>{{ product.name }}</small></p></b-col>
+              <b-col><h6>Shipping Cost: </h6> <p><small>{{ product.shippingCost | formatMoney() }}</small></p></b-col>
+              <b-col><h6>Unit Price: </h6> <p><small>{{ product.price | formatMoney() }}</small></p></b-col>
+              <b-col><h6>Quantity: </h6> <p><small>{{ product.quantities }}</small></p></b-col>
+            </b-row>
+          </b-container>
+        </b-list-group-item>
+      </b-list-group>
     </b-list-group>
   </div>
 </template>
@@ -46,7 +44,7 @@ export default {
       return month + '/' + day + '/' + year
     },
     formatMoney (money) {
-      return 'CDN$ ' + money
+      return '$' + money
     }
   },
   methods: {

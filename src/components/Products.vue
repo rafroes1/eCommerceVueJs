@@ -1,10 +1,11 @@
 <template>
   <div class="mt-3">
     <Alert :alert="alert" />
-     <b-row v-for="value in items" :key="value._id">
-      <b-col>
-        <b-card-group deck>
+    <!-- <b-row v-for="value in items" :key="value._id">
+      <b-col> -->
+        <b-card-group columns>
           <b-card
+            v-for="value in items" :key="value._id"
             :title="value.name"
             :img-src="value.image"
             img-alt="Image"
@@ -13,18 +14,17 @@
             style="max-width: 20rem;"
             class="mb-2"
           >
-            <b-card-text
-            >
-            ${{value.price}}
+            <b-card-text>
+              ${{ value.price }}
             </b-card-text>
 
             <b-button size="sm" class="mb-2" href="#" variant="primary" @click="addToCart(value._id)">Buy</b-button>
             &nbsp;
-            <b-button size="sm" class="mb-2" variant="outline-primary" :to="'/ProductDetails/' + value._id ">Details</b-button>
+            <b-button size="sm" class="mb-2" variant="outline-primary" :to="'/product/' + value._id ">Details</b-button>
           </b-card>
         </b-card-group>
-      </b-col>
-    </b-row>
+      <!-- </b-col>
+    </b-row> -->
   </div>
 </template>
 
@@ -75,7 +75,6 @@ export default {
         this.alert.variant = 'danger'
       }
     }
-
   }
 }
 </script>

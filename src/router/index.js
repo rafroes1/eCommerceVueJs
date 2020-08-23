@@ -41,7 +41,7 @@ const routes = [
     component: Success
   },
   {
-    path: '/ProductDetails/:id',
+    path: '/product/:id',
     name: 'ProductDetails',
     component: ProductDetails
   }

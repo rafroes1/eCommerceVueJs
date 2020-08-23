@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-form>
+    <b-form @submit.prevent="handleUpdateAccount">
+      <Alert :alert="alert" />
       <b-form-group
         id="input-group-1"
         label="Email:"
@@ -50,30 +51,28 @@
         ></b-form-input>
       </b-form-group>
 
-      <b-button type="submit" variant="primary" @click="handleUpdateAccount">Update</b-button>
+      <b-button type="submit" variant="primary">Update</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import Alert from '@/components/Alert'
 
 export default {
   data () {
     return {
-      form: {
-        email: '',
-        password: '',
-        fullname: '',
-        phone: '',
-        address: ''
-      },
+      form: this.$store.state.user,
       alert: {
         show: false,
         variant: '',
         message: ''
       }
     }
+  },
+  components: {
+    Alert
   },
   methods: {
     ...mapActions([
@@ -85,6 +84,7 @@ export default {
       this.alert.show = true
       this.alert.message = result.message
       if (response.status === 200) {
+        this.$store.state.fullname = this.form.fullname
         this.alert.variant = 'success'
       } else {
         this.alert.variant = 'danger'
