@@ -1,5 +1,7 @@
 # ecommerce-vuejs
 
+College group ecommerce project, I was responsible for creating comments, showing them and the purchase history.
+
 ## Project setup
 ```
 npm install
